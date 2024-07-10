@@ -12,10 +12,15 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let opt=prompt("It's your turn\nEnter one of the following options: 'rock', 'paper', 'scissors'").toLowerCase();
+    let opt=prompt("It's your turn\nEnter one of the following options: 'rock', 'paper', 'scissors'")
+    if(opt===null){
+        return -1;
+    }
+    opt=opt.toLowerCase();
     while(!(opt=="rock"|| opt=="paper"|| opt=="scissors")){
         opt=prompt("Invalid Option\nEnter one of the following options: 'rock', 'paper', 'scissors'");
     }
+    
     return opt;
 }
 
@@ -47,10 +52,15 @@ function playGame(){
     for(i=0;i<5;i++){
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoice();
+        if(humanSelection==-1){
+            console.log("Game Ended!");
+            break;
+        }
         playRound(humanSelection,computerSelection);
     }
     if(humanScore>computerScore) console.log(`You Won!`);
     else if(computerScore>humanScore) console.log(`You Lost!`)
+    else if(computerScore+humanScore===0) console.log("User Clicked 'Cancel'")
     else console.log(`Its a Draw!`);
 }
 document.addEventListener('DOMContentLoaded', function() {
