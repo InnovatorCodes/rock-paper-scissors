@@ -19,27 +19,35 @@ function getHumanChoice(){
     return opt;
 }
 
-function playRound(humanChoice, computerChoice){
-    let humanCode=(humanChoice==="rock")? 0 :(humanChoice==="paper"? 1 : 2);
-    let compCode=(computerChoice==="rock")? 0 :(computerChoice==="paper"? 1 : 2);
-    let compare=humanCode-compCode;
-    if(compare===-2){
-        console.log("You Win! Rock beats Scissors");
-        humanScore++;
-    } 
-    else if(compare===-1){
-        console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
-        computerScore++;
+function playGame(){
+    function playRound(humanChoice, computerChoice){
+        let humanCode=(humanChoice==="rock")? 0 :(humanChoice==="paper"? 1 : 2);
+        let compCode=(computerChoice==="rock")? 0 :(computerChoice==="paper"? 1 : 2);
+        let compare=humanCode-compCode;
+        if(compare===-2){
+            console.log("You Win! Rock beats Scissors");
+            humanScore++;
+        } 
+        else if(compare===-1){
+            console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+            computerScore++;
+        }
+        else if(compare===1){
+            console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
+            humanScore++; 
+        } 
+        else if(compare===2){
+            console.log(`You Lose! Rock beats Scissors`);
+            computerScore++;
+        } 
+        else console.log(`Draw! Both your choices were ${computerChoice}`);
+        return;
     }
-    else if(compare===1){
-        console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
-        humanScore++; 
-    } 
-    else if(compare===2){
-        console.log(`You Lose! Rock beats Scissors`);
-        computerScore++;
-    } 
-    else console.log(`Draw! Both your choices were ${computerChoice}`);
+    let humanScore=0, computerScore=0;
+    for(i=0;i<5;i++){
+        playRound();
+    }
+    if(humanScore>computerScore) console.log(`You Won!`);
+    else if(computerScore>humanScore) console.log(`You Lost!`)
+    else console.log(`Its a Draw!`);
 }
-
-let humanScore=0, computerScore=0;
