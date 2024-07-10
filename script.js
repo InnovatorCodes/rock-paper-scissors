@@ -53,4 +53,7 @@ function playGame(){
     else if(computerScore>humanScore) console.log(`You Lost!`)
     else console.log(`Its a Draw!`);
 }
-document.getElementById("start").addEventListener('click',playGame);
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener to the button with id "start"
+    document.getElementById("start").addEventListener('click', playGame);
+});
