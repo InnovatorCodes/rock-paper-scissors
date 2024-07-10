@@ -12,11 +12,34 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let opt=prompt("It's your turn\nEnter one of the following options: 'rock', 'paper', 'scissors'");
+    let opt=prompt("It's your turn\nEnter one of the following options: 'rock', 'paper', 'scissors'").toLowerCase;
     while(!(opt==="rock"|| opt==="paper"|| opt==="scissors")){
         opt=prompt("Invalid Option\nEnter one of the following options: 'rock', 'paper', 'scissors'");
     }
     return opt;
 }
 
-console.log(getHumanChoice());
+function playRound(humanChoice, computerChoice){
+    let humanCode=(humanChoice==="rock")? 0 :(humanChoice==="paper"? 1 : 2);
+    let compCode=(computerChoice==="rock")? 0 :(computerChoice==="paper"? 1 : 2);
+    let compare=humanCode-compCode;
+    if(compare===-2){
+        console.log("You Win! Rock beats Scissors");
+        humanScore++;
+    } 
+    else if(compare===-1){
+        console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+        computerScore++;
+    }
+    else if(compare===1){
+        console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
+        humanScore++; 
+    } 
+    else if(compare===2){
+        console.log(`You Lose! Rock beats Scissors`);
+        computerScore++;
+    } 
+    else console.log(`Draw! Both your choices were ${computerChoice}`);
+}
+
+let humanScore=0, computerScore=0;
