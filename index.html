@@ -4,26 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-    <script src="script.js"></script>
-    <style>
-        body{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex:auto;
-            height: 100vh;
-        }
-        #start{
-            padding:25px 50px;
-            background-color: #3882F6;
-            border: none;
-            border-radius: 5px;
-            color: #F9FAF8;
-            font-size: larger;
-        }
-    </style>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="start">Start Game</button>
+    <button class="startpage" id="start">Start Game</button>
+    <div id="rounds"></div>
+    <div id="options">
+        <button class="option" id="0">ROCK</button>
+        <button class="option" id="1">PAPER</button>
+        <button class="option" id="2">SCISSORS</button>
+    </div>
+    <div id="result"></div>
 </body>
 </html>

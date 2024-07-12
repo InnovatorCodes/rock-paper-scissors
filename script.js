@@ -1,69 +1,62 @@
 function getComputerChoice(){
-    let rand=Math.floor(Math.random()*3)
-    if(rand===0){
-        return "rock";
-    }
-    else if(rand===1){
-        return "paper";
-    }
-    else{
-        return "scissors";  
-    }
-}
-
-function getHumanChoice(){
-    let opt=prompt("It's your turn\nEnter one of the following options: 'rock', 'paper', 'scissors'")
-    if(opt===null){
-        return -1;
-    }
-    opt=opt.toLowerCase();
-    while(!(opt=="rock"|| opt=="paper"|| opt=="scissors")){
-        opt=prompt("Invalid Option\nEnter one of the following options: 'rock', 'paper', 'scissors'");
-    }
-    
-    return opt;
+    //return Math.floor(Math.random()*3); 
+    return 0;
 }
 
 function playGame(){
     function playRound(humanChoice, computerChoice){
-        let humanCode=(humanChoice==="rock")? 0 :(humanChoice==="paper"? 1 : 2);
-        let compCode=(computerChoice==="rock")? 0 :(computerChoice==="paper"? 1 : 2);
-        let compare=humanCode-compCode;
-        if(compare===-2){
-            console.log("You Win! Rock beats Scissors");
-            humanScore++;
-        } 
-        else if(compare===-1){
-            console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
-            computerScore++;
+        const roundsdiv=document.querySelector('#rounds');
+        if(roundsLeft>0){
+            let compare=humanChoice-computerChoice;
+            if(compare===-2){
+                console.log("You Win! Rock beats Scissors");
+                humanScore++;
+            } 
+            else if(compare===-1){
+                console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+                computerScore++;
+            }
+            else if(compare===1){
+                console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
+                humanScore++; 
+            } 
+            else if(compare===2){
+                console.log(`You Lose! Rock beats Scissors`);
+                computerScore++;
+            } 
+            else console.log(`Draw! Both your choices were ${computerChoice}`);
+            roundsLeft--;
+            roundsdiv.textContent="Rounds Remaining: "+roundsLeft;
+            if(roundsLeft==0 && humanScore==computerScore){
+                const resultdiv=document.querySelector('#result');
+                resultdiv.textContent='Deathmatch. First player to Win a Round, Wins the Game'
+            }
+            console.log(roundsLeft);
+            return;
         }
-        else if(compare===1){
-            console.log(`You Win! ${humanChoice} beats ${computerChoice}`);
-            humanScore++; 
-        } 
-        else if(compare===2){
-            console.log(`You Lose! Rock beats Scissors`);
-            computerScore++;
-        } 
-        else console.log(`Draw! Both your choices were ${computerChoice}`);
-        return;
     }
-    let humanScore=0, computerScore=0;
-    for(i=0;i<5;i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        if(humanSelection==-1){
-            console.log("Game Ended!");
-            break;
+
+    let humanScore=0, computerScore=0, roundsLeft=5;
+    const startbtn=document.querySelector("#start");
+    const optbtns=document.querySelectorAll(".option");
+    //startbtn.addEventListener('click',playGame);
+    const optdiv=document.querySelector('#options');
+    optdiv.addEventListener('click',(event)=>{
+        let target=event.target.id;
+        if(target==1||target==2||target==0){
+            playRound(target,getComputerChoice());
         }
-        playRound(humanSelection,computerSelection);
-    }
+    })
+    startbtn.addEventListener('click',()=>{
+        startbtn.classList.toggle('startpage');
+        optbtns.forEach((btn)=>{
+            btn.classList.toggle('gamepage')
+        })
+    })
+    
     if(humanScore>computerScore) console.log(`You Won!`);
     else if(computerScore>humanScore) console.log(`You Lost!`)
-    else if(computerScore+humanScore===0) console.log("User Clicked 'Cancel'")
     else console.log(`Its a Draw!`);
 }
-document.addEventListener('DOMContentLoaded', function() {
-    // Add event listener to the button with id "start"
-    document.getElementById("start").addEventListener('click', playGame);
-});
+
+playGame();
