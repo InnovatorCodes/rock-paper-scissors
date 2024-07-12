@@ -1,3 +1,7 @@
+*{
+    display: block;
+}
+title{display: none;}
 body{
     display: flex;
     flex-direction: column;
@@ -16,22 +20,49 @@ button{
     font-size: larger;
     display: none;
 }
-.startpage#start{
-    display: block;
-}
-.gamepage{
+
+.start{
     display: block;
 }
 
-#options{
+
+.options{
     display: flex;
     gap:10px;
 }
 .option{
     flex: 1;
+    display: block;
     width: 300px;
 }
 
-#result, #result{
-    font-size: large;
+.result, .rounds, .score{
+    font-size: 28px;
+}
+
+.choice{
+    font-size: 60px;
+}
+
+.scores{
+    display: flex;
+    justify-content: center;
+    margin: 0 30vw;
+    width: 40vw;
+    height: min-content;
+    flex: auto;
+    flex-grow: 0;
+    justify-content: space-between;
+}
+
+.prevchoices{
+    display: flex;
+    width: 35vw;
+    flex: auto;
+    flex-grow: 0;
+    justify-content: space-between;
+}
+
+.displayoff{
+    display: none;
 }
