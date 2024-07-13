@@ -2,28 +2,34 @@ function getComputerChoice(){
     return Math.floor(Math.random()*3); 
 }
 
+
 function playGame(){
+    function convertCodeToRPS(code){
+        return code==0? "Rock" : (code==1?"Paper":"Scissors");
+    }
+
     function playRound(humanChoice, computerChoice){ //function to play a single round and increment scores accordingly
         const resultdiv=document.querySelector('.result');
+        const roundresdiv=document.querySelector('.roundres');
         if(roundsLeft>0){
             let compare=humanChoice-computerChoice;
             if(compare===-2){
-                console.log("You Win! Rock beats Scissors");
+                roundresdiv.textContent="Rock beats Scissors";
                 humanScore++;
             } 
             else if(compare===-1){
-                console.log(`You Lose! ${prevcomp} beats ${prevhuman}`);
+                roundresdiv.textContent=`${convertCodeToRPS(prevhuman)} is beaten by ${convertCodeToRPS(prevcomp)}`;
                 computerScore++;
             }
             else if(compare===1){
-                console.log(`You Win! ${prevhuman} beats ${prevcomp}`);
+                roundresdiv.textContent=`${convertCodeToRPS(prevhuman)} beats ${convertCodeToRPS(prevcomp)}`;
                 humanScore++; 
             } 
             else if(compare===2){
-                console.log(`You Lose! Rock beats Scissors`);
+                roundresdiv.textContent=`Scissors is beaten Rock`;
                 computerScore++;
             } 
-            else console.log(`Draw! Both your choices were ${prevcomp}`);
+            else roundresdiv.textContent=`Both your choices were ${convertCodeToRPS(prevcomp)}`;
             roundsLeft--;
             
             if(roundsLeft==0 && humanScore==computerScore){
@@ -84,6 +90,7 @@ function playGame(){
     const humandiv=document.querySelector('.human .score');
     const compdiv=document.querySelector('.comp .score');
     const rstbtn=document.querySelector('.restart');
+    const roundresdiv=document.querySelector('.roundres');
     optdiv.addEventListener('click',(event)=>{ //event listener to play round everytime an option button is clicked
         let target=event.target.id;
         if((target==1||target==2||target==0) && roundsLeft>0){
@@ -97,6 +104,7 @@ function playGame(){
         optdiv.classList.toggle('displayoff');
         scoresdiv.classList.toggle('displayoff');
         roundsdiv.classList.toggle('displayoff');
+        roundresdiv.classList.toggle('displayoff');
     })
     document.addEventListener('click',()=>{ // event listener to update scores and other data everytime mouse is clicked
         roundsdiv.textContent="Rounds Remaining: "+roundsLeft;
@@ -116,6 +124,7 @@ function playGame(){
             const resultdiv=document.querySelector('.result');
             resultdiv.textContent='';
             rstbtn.classList.add('displayoff');
+            roundresdiv.textContent='';
         }
     );
 }

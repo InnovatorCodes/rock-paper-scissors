@@ -55,7 +55,7 @@ button{
     width: 300px;
 }
 
-.result, .rounds, .score{
+.result, .rounds, .score, .roundres{
     font-size: 28px;
 }
 
@@ -78,6 +78,10 @@ button{
     text-align: center;
 }
 .restart{
+    display: block;
+}
+
+.roundres{
     display: block;
 }
 
