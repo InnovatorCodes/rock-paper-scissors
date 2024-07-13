@@ -11,10 +11,6 @@ body{
     gap:20px;
 }
 
-h1{
-    font-family: 'Press Start 2P', cursive;
-}
-
 .header{
     flex:0;
     align-self: stretch;
@@ -27,7 +23,7 @@ h1{
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
 }
 
 button{
@@ -55,7 +51,7 @@ button{
     width: 300px;
 }
 
-.result, .rounds, .score, .roundres{
+.result, .score, .roundres, .info{
     font-size: 28px;
 }
 
@@ -83,6 +79,9 @@ button{
 
 .roundres{
     display: block;
+}
+button.restart{
+    background-color: #228B22;
 }
 
 .displayoff{

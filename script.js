@@ -11,37 +11,28 @@ function playGame(){
     function playRound(humanChoice, computerChoice){ //function to play a single round and increment scores accordingly
         const resultdiv=document.querySelector('.result');
         const roundresdiv=document.querySelector('.roundres');
-        if(roundsLeft>0){
-            let compare=humanChoice-computerChoice;
-            if(compare===-2){
-                roundresdiv.textContent="Rock beats Scissors";
-                humanScore++;
-            } 
-            else if(compare===-1){
-                roundresdiv.textContent=`${convertCodeToRPS(prevhuman)} is beaten by ${convertCodeToRPS(prevcomp)}`;
-                computerScore++;
-            }
-            else if(compare===1){
-                roundresdiv.textContent=`${convertCodeToRPS(prevhuman)} beats ${convertCodeToRPS(prevcomp)}`;
-                humanScore++; 
-            } 
-            else if(compare===2){
-                roundresdiv.textContent=`Scissors is beaten Rock`;
-                computerScore++;
-            } 
-            else roundresdiv.textContent=`Both your choices were ${convertCodeToRPS(prevcomp)}`;
-            roundsLeft--;
-            
-            if(roundsLeft==0 && humanScore==computerScore){
-                resultdiv.textContent='Deathmatch. First player to Win a Round, Wins the Game'; //Deathmatch round for which one more round is played as long as scores are equal
-                roundsLeft=1;
-            }
-            else if(roundsLeft==0 && humanScore>computerScore){
-                resultdiv.textContent='You Won!';
-            }
-            else if(roundsLeft==0) resultdiv.textContent='You Lost.';
-            return; 
+        let compare=humanChoice-computerChoice;
+        if(compare===-2){
+            roundresdiv.textContent="Rock beats Scissors";
+            humanScore++;
+        } 
+        else if(compare===-1){
+            roundresdiv.textContent=`${convertCodeToRPS(prevhuman)} is beaten by ${convertCodeToRPS(prevcomp)}`;
+            computerScore++;
         }
+        else if(compare===1){
+            roundresdiv.textContent=`${convertCodeToRPS(prevhuman)} beats ${convertCodeToRPS(prevcomp)}`;
+            humanScore++; 
+        } 
+        else if(compare===2){
+            roundresdiv.textContent=`Scissors is beaten Rock`;
+            computerScore++;
+        } 
+        else roundresdiv.textContent=`Both your choices were ${convertCodeToRPS(prevcomp)}`;
+        
+        if(humanScore==5) resultdiv.textContent='You Won!';
+        else if(computerScore==5) resultdiv.textContent='You Lost.';
+        return; 
     }
 
     function displayPrevChoice(prevhuman,prevcomp){   //function to display what was played by both players in the last round
@@ -81,10 +72,9 @@ function playGame(){
         }
     }
 
-    let humanScore=0, computerScore=0, roundsLeft=5;
+    let humanScore=0, computerScore=0;
     let prevhuman=3, prevcomp=3;
     const startbtn=document.querySelector(".start");
-    const roundsdiv=document.querySelector('.rounds');
     const optdiv=document.querySelector('.options');
     const scoresdiv=document.querySelector('.scores');
     const humandiv=document.querySelector('.human .score');
@@ -93,7 +83,7 @@ function playGame(){
     const roundresdiv=document.querySelector('.roundres');
     optdiv.addEventListener('click',(event)=>{ //event listener to play round everytime an option button is clicked
         let target=event.target.id;
-        if((target==1||target==2||target==0) && roundsLeft>0){
+        if(target==1||target==2||target==0){
             prevhuman=parseInt(target);
             prevcomp=getComputerChoice();
             playRound(target,prevcomp);
@@ -103,15 +93,13 @@ function playGame(){
         startbtn.classList.toggle('displayoff');
         optdiv.classList.toggle('displayoff');
         scoresdiv.classList.toggle('displayoff');
-        roundsdiv.classList.toggle('displayoff');
         roundresdiv.classList.toggle('displayoff');
     })
     document.addEventListener('click',()=>{ // event listener to update scores and other data everytime mouse is clicked
-        roundsdiv.textContent="Rounds Remaining: "+roundsLeft;
         humandiv.textContent="Player: "+humanScore;
         compdiv.textContent="Computer: "+computerScore;
         displayPrevChoice(prevhuman,prevcomp);
-        if(roundsLeft==0){
+        if(humanScore==5 || computerScore==5){
             rstbtn.classList.remove('displayoff');
         }
     });
