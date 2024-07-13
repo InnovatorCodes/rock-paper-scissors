@@ -8,21 +8,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button class="start">Start Game</button>
-    <div class="prevchoices displayoff">
-        <div class="human choice">&#10068</div>
-        <div class="comp choice">&#10068</div>
+    <div class="header">
+        <h1>ROCK PAPER SCISSORS</h1>
     </div>
-    <div class="scores displayoff">
-        <div class="human score"></div>
-        <div class="comp score"></div>
+    <div class="main">
+        <button class="start">Start Game</button>
+        <div class="roundres displayoff"></div>
+        <div class="scores displayoff">
+            <div class="human">
+                <div class="choice">&#10068</div>
+                <div class="score"></div>
+            </div>
+            <div class="comp">
+                <div class="choice">&#10068</div>
+                <div class="score"></div>
+            </div>
+        </div>
+        <div class="displayoff rounds"></div>
+            <div class="options displayoff ">
+            <button class="option" id="0">ROCK</button>
+            <button class="option" id="1">PAPER</button>
+            <button class="option" id="2">SCISSORS</button>
+            </div>
+        <div class="result"></div>
+        <button class="restart displayoff">Restart Game</button>
     </div>
-    <div class="displayoff rounds"></div>
-    <div class="options displayoff ">
-        <button class="option" id="0">ROCK</button>
-        <button class="option" id="1">PAPER</button>
-        <button class="option" id="2">SCISSORS</button>
-    </div>
-    <div class="result"></div>
 </body>
 </html>

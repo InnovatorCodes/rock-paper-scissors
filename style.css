@@ -5,12 +5,31 @@ title{display: none;}
 body{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     flex:auto;
     height: 100vh;
     gap:20px;
 }
+
+h1{
+    font-family: 'Press Start 2P', cursive;
+}
+
+.header{
+    flex:0;
+    align-self: stretch;
+    justify-content: center;
+    display: flex;
+}
+.main{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
 button{
     padding:25px 50px;
     background-color: #3882F6;
@@ -55,12 +74,11 @@ button{
     justify-content: space-between;
 }
 
-.prevchoices{
-    display: flex;
-    width: 35vw;
-    flex: auto;
-    flex-grow: 0;
-    justify-content: space-between;
+.human, .comp{
+    text-align: center;
+}
+.restart{
+    display: block;
 }
 
 .displayoff{
