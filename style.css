@@ -17,6 +17,10 @@ body{
     justify-content: center;
     display: flex;
 }
+
+.h1{
+    text-align: center;
+}
 .main{
     flex: 1;
     display: flex;
@@ -40,19 +44,25 @@ button{
     display: block;
 }
 
+.option{
+    min-width: 200px;
+}
 
 .options{
     display: flex;
     gap:10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .option{
-    flex: 1;
+    flex: 0;
     display: block;
     width: 300px;
 }
 
 .result, .score, .roundres, .info{
     font-size: 28px;
+    text-align: center;
 }
 
 .choice{
@@ -65,8 +75,9 @@ button{
     margin: 0 30vw;
     width: 40vw;
     height: min-content;
-    flex: auto;
-    flex-grow: 0;
+    flex: 0;
+    flex-shrink: 0;
+    gap: 20px;
     justify-content: space-between;
 }
 
